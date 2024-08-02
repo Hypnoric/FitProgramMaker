@@ -1,7 +1,7 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:program_maker/widget/big_card.dart';
+import 'package:program_maker/main.dart';
+import 'package:provider/provider.dart';
 
 const List<Widget> days = <Widget>[
   Text('Monday'),
@@ -19,12 +19,11 @@ class WeekPage extends StatefulWidget {
 }
 
 class _WeekPageState extends State<WeekPage> {
-  final List<bool> _selectedDays = <bool>[false, false, false, false, false, false, false];
-
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
     final ThemeData theme = Theme.of(context);
-    final int maxDays = 3; // get from appstate
+    final int maxDays = appState.numberOfDays; // get from appstate
 
     return Scaffold(
       body: Center(
@@ -41,11 +40,11 @@ class _WeekPageState extends State<WeekPage> {
                   // All buttons are selectable.
                   setState(() {
                     var numberSelected = 0;
-                    for (int buttonIndex = 0; buttonIndex < _selectedDays.length; buttonIndex++) {
-                      numberSelected = numberSelected + (_selectedDays.elementAt(buttonIndex) ? 1 : 0);
+                    for (int buttonIndex = 0; buttonIndex < appState.selectedDays.length; buttonIndex++) {
+                      numberSelected = numberSelected + (appState.selectedDays.elementAt(buttonIndex) ? 1 : 0);
                     }
-                    if (_selectedDays.elementAt(index) || numberSelected < maxDays) {
-                      _selectedDays[index] = !_selectedDays[index];
+                    if (appState.selectedDays.elementAt(index) || numberSelected < maxDays) {
+                      appState.toggleSelectedDay(index);
                     }
                   });
                 },
@@ -58,7 +57,7 @@ class _WeekPageState extends State<WeekPage> {
                   minHeight: 40.0,
                   minWidth: 80.0,
                 ),
-                isSelected: _selectedDays,
+                isSelected: appState.selectedDays,
                 children: days,
               ),
             ],

@@ -1,5 +1,5 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:program_maker/exercise.dart';
 import 'package:provider/provider.dart';
 
 import 'widget/home_page.dart';
@@ -28,22 +28,27 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-
-   void getNext() {
-    current = WordPair.random();
+  var numberOfDays = 2;
+  void setNumberOfDays(int value) {
+    numberOfDays = value;
+    // Reset the selected days so we don't have more days than the selectect number
+    selectedDays = <bool>[false, false, false, false, false, false, false];
     notifyListeners();
   }
 
-  var favorites = <WordPair>[];
-
-  void toggleFavorite() {
-    if (favorites.contains(current)) {
-      favorites.remove(current);
-    } else {
-      favorites.add(current);
-    }
+  var selectedDays = <bool>[false, false, false, false, false, false, false];
+  void toggleSelectedDay(int index) {
+    selectedDays[index] = !selectedDays[index];
     notifyListeners();
   }
 
+  var selectedExercises = <Exercise>[];
+  void addExercise(Exercise ex) {
+    selectedExercises.add(ex);
+    notifyListeners();
+  }
+  void removeExercise(Exercise ex) {
+    selectedExercises.remove(ex);
+    notifyListeners();
+  }
 }

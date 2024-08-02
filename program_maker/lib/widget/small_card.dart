@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BigCard extends StatelessWidget {
-  const BigCard({
+class SmallCard extends StatelessWidget {
+  const SmallCard({
     super.key,
     required this.text,
   });
@@ -11,16 +11,16 @@ class BigCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.displayMedium!.copyWith(
-      color: theme.colorScheme.onPrimary,
-      fontSize: 20,
+    final style = theme.textTheme.displaySmall!.copyWith(
+      color: theme.colorScheme.onSecondary,
+      fontSize: 15,
     );
 
     return Card(
-      color: theme.colorScheme.primary,
+      color: theme.colorScheme.tertiary,
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(5),
         child: Text(text, style: style),
       ),
     );
