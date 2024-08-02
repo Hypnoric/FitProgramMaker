@@ -31,7 +31,7 @@ class MyAppState extends ChangeNotifier {
   var numberOfDays = 2;
   void setNumberOfDays(int value) {
     numberOfDays = value;
-    // Reset the selected days so we don't have more days than the selectect number
+    // Reset the selected days so we don't have more days than the selected number
     selectedDays = <bool>[false, false, false, false, false, false, false];
     notifyListeners();
   }

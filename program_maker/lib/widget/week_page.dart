@@ -23,7 +23,7 @@ class _WeekPageState extends State<WeekPage> {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     final ThemeData theme = Theme.of(context);
-    final int maxDays = appState.numberOfDays; // get from appstate
+    final int maxDays = appState.numberOfDays;
 
     return Scaffold(
       body: Center(

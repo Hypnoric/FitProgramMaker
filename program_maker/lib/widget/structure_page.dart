@@ -8,9 +8,9 @@ import '../main.dart';
 const List<String> structures = <String>[
   "Fullbody x2",
   "Fullbody x3",
-  "Push Pull Push Pull",
-  "Push Pull Legs Upper Lower",
-  "Push Pull Legs Push Pull Legs"
+  "Push-Pull split",
+  "Push-Pull-Legs-Upper-Lower split",
+  "Push-Pull-Legs split"
 ];
 
 class StructurePage extends StatefulWidget {

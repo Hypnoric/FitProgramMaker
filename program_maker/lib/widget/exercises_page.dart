@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../main.dart';
 
-// I know this page would need some reformatting, create some class that would do all the repetitive steps for each exercice type
+// I know this page would need some reformatting
+// to improve this we coud refactor all the togglebuttons into their own stateless widget potentially
 const List<Exercise> chestExercises = <Exercise>[
   Exercise.pushup,
   Exercise.bench,
@@ -35,6 +36,14 @@ const List<Exercise> hamstringExercises = <Exercise>[
   Exercise.deadlift,
 ];
 
+void initExercises(
+    List<Widget> widgets, List<bool> selections, List<Exercise> exercises) {
+  for (int i = 0; i < exercises.length; i++) {
+    widgets.add(Text(exercises[i].name));
+    selections.add(false);
+  }
+}
+
 class ExercisesPage extends StatefulWidget {
   @override
   State<ExercisesPage> createState() => _ExercisesPageState();
@@ -59,30 +68,12 @@ class _ExercisesPageState extends State<ExercisesPage> {
   void initState() {
     super.initState();
 
-    for (int i = 0; i < chestExercises.length; i++) {
-      chestWidgets.add(Text(chestExercises[i].name));
-      selectedChest.add(false);
-    }
-    for (int i = 0; i < shoulderExercises.length; i++) {
-      shoulderWidgets.add(Text(shoulderExercises[i].name));
-      selectedShoulder.add(false);
-    }
-    for (int i = 0; i < bicepExercises.length; i++) {
-      bicepWidgets.add(Text(bicepExercises[i].name));
-      selectedBicep.add(false);
-    }
-    for (int i = 0; i < backExercises.length; i++) {
-      backWidgets.add(Text(backExercises[i].name));
-      selectedBack.add(false);
-    }
-    for (int i = 0; i < quadExercises.length; i++) {
-      quadWidgets.add(Text(quadExercises[i].name));
-      selectedQuad.add(false);
-    }
-    for (int i = 0; i < hamstringExercises.length; i++) {
-      hamstringWidgets.add(Text(hamstringExercises[i].name));
-      selectedHamstring.add(false);
-    }
+    initExercises(chestWidgets, selectedChest, chestExercises);
+    initExercises(shoulderWidgets, selectedShoulder, shoulderExercises);
+    initExercises(bicepWidgets, selectedBicep, bicepExercises);
+    initExercises(backWidgets, selectedBack, backExercises);
+    initExercises(quadWidgets, selectedQuad, quadExercises);
+    initExercises(hamstringWidgets, selectedHamstring, hamstringExercises);
   }
 
   @override

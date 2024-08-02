@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../main.dart';
 
+// Create the list of widget that will contain a column on the result page
 List<Widget> createDay(String day) {
   return <Widget>[
     BigCard(text: day),
@@ -33,10 +34,20 @@ class ResultsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    var structure = <String>[];
+
+    // Validate all the days were selected before creating the program
+    if (appState.selectedDays.where((item) => item).toList().length !=
+        appState.numberOfDays) {
+      return Scaffold(
+          body: Center(
+              child: BigCard(
+                  text:
+                      "Please select all the work out days in the Week Days page")));
+    }
     switch (appState.numberOfDays) {
       case 2:
       case 3:
+        // Logic for fullbody workouts
         for (int i = 0; i < appState.selectedDays.length; i++) {
           if (appState.selectedDays[i]) {
             for (int j = 0; j < appState.selectedExercises.length; j++) {
@@ -47,8 +58,9 @@ class ResultsPage extends StatelessWidget {
           }
         }
       case 4:
+        // Logic for "push pull" split
         var counter = 0;
-        structure = ["push", "pull", "push", "pull"];
+        var structure = ["push", "pull", "push", "pull"];
         for (int i = 0; i < appState.selectedDays.length; i++) {
           if (appState.selectedDays[i]) {
             for (int j = 0; j < appState.selectedExercises.length; j++) {
@@ -62,7 +74,8 @@ class ResultsPage extends StatelessWidget {
           }
         }
       case 5:
-        structure = ["push", "pull", "legs", "upper", "lower"];
+        // Logic for "push pull legs upper lower" split
+        var structure = ["push", "pull", "legs", "upper", "lower"];
         var counter = 0;
         for (int i = 0; i < appState.selectedDays.length; i++) {
           if (appState.selectedDays[i]) {
@@ -81,7 +94,7 @@ class ResultsPage extends StatelessWidget {
           }
         }
       case 6:
-        structure = [
+        var structure = [
           "push",
           "pull",
           "legs",
@@ -89,6 +102,8 @@ class ResultsPage extends StatelessWidget {
           "pull",
           "legs",
         ];
+
+        // Logic for "push pull legs" split
         var counter = 0;
         for (int i = 0; i < appState.selectedDays.length; i++) {
           if (appState.selectedDays[i]) {
