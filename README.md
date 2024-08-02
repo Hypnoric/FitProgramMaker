@@ -11,3 +11,5 @@ Import in vs code or the IDE of your choice and run.
 4. Look at the program created for you!
 
 Each exercises are separated into types and will be automatically placed according to the structure of the program determined by the nomber of workout days chosen in order to spread out exercises targeting the same muscle group.
+
+
